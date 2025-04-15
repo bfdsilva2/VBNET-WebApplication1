@@ -21,4 +21,139 @@ Partial Public Class _Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvMain As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''lblCalledBy control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCalledBy As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtCalledBy control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCalledBy As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblDriver control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblDriver As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtDriver control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtDriver As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblVehicle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblVehicle As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtVehicle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtVehicle As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblTowAddress control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTowAddress As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtTowAddress control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTowAddress As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblTowLocation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblTowLocation As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtTowLocation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtTowLocation As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblConatctPhone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblConatctPhone As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtConatctPhone control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtConatctPhone As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblNotes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblNotes As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtNotes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtNotes As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btnUpdate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUpdate As Global.System.Web.UI.WebControls.Button
 End Class
