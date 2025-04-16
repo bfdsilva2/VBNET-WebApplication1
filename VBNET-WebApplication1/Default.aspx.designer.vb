@@ -14,6 +14,24 @@ Option Explicit On
 Partial Public Class _Default
 
     '''<summary>
+    '''updMain control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents updMain As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
+    '''btnAddNewRecord control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnAddNewRecord As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''gvMain control.
     '''</summary>
     '''<remarks>
@@ -21,6 +39,42 @@ Partial Public Class _Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents gvMain As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''lblStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblStatus As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''dataTitle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dataTitle As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pSectionData control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pSectionData As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''divEditData control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents divEditData As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''lblCalledBy control.
@@ -131,6 +185,33 @@ Partial Public Class _Default
     Protected WithEvents txtConatctPhone As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lblCalledIn control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblCalledIn As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtCalledInDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCalledInDate As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtCalledInTime control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCalledInTime As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''lblNotes control.
     '''</summary>
     '''<remarks>
@@ -156,4 +237,22 @@ Partial Public Class _Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnUpdate As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnAdd control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnAdd As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnCancel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
 End Class
