@@ -10,7 +10,7 @@
             <main>                
                 <div class="row">
                     <section class="col-md-7" aria-labelledby="gettingStartedTitle">
-                        <h2 id="gettingStartedTitle">Tow listing</h2>
+                        <h2 id="gettingStartedTitle">Welcome <asp:Label ID="lblUsername" runat="server"></asp:Label> - Tow listing</h2>
                         <p>
                             This is the list of tow jobs.
                         </p>
@@ -47,7 +47,7 @@
 
                             <p>
                                 <asp:Label ID="lblDriver" runat="server" Text="Driver"></asp:Label><br />
-                                <asp:TextBox ID="txtDriver" runat="server" Width="100%"></asp:TextBox>
+                                <asp:DropDownList ID="cboDriver" runat="server" Width="100%"></asp:DropDownList>
                             </p>
                 
                             <p>
@@ -66,8 +66,8 @@
                             </p>
                 
                             <p>
-                                <asp:Label ID="lblConatctPhone" runat="server" Text="Conatct Phone"></asp:Label><br />
-                                <asp:TextBox ID="txtConatctPhone" runat="server" Width="100%"></asp:TextBox>
+                                <asp:Label ID="lblContactPhone" runat="server" Text="Contact Phone"></asp:Label><br />
+                                <asp:TextBox ID="txtContactPhone" runat="server" Width="100%"></asp:TextBox>
                             </p>
                 
                             <p>

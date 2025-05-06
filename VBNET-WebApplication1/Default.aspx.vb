@@ -5,6 +5,46 @@
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         RefreshTowList()
+        If IsPostBack() Then Exit Sub
+
+        lblUsername.Text = GetUserName()
+
+        UpdateComboDriver()
+    End Sub
+
+    Private Function GetUserName() As String
+        Dim strUserName = HttpContext.Current.User.Identity.Name
+        If Len(strUserName) = 0 Or Left(strUserName, 3) = "IIS" Then
+            strUserName = System.Security.Principal.WindowsIdentity.GetCurrent().Name
+        End If
+        Return strUserName
+    End Function
+
+    Sub UpdateComboDriver()
+        Try
+            Dim strConn As String = ConfigurationManager.ConnectionStrings("tow_conn").ConnectionString
+            Dim objConn As New SqlClient.SqlConnection(strConn)
+            Dim dataSet As New DataSet()
+            Dim query As String = "select ID, DriverName from [tow_driver] order by DriverName;"
+            Dim dpt As New SqlClient.SqlDataAdapter(query, objConn)
+            dpt.Fill(dataSet, "tmptow_driver")
+            Dim tblData As DataTable = dataSet.Tables("tmptow_driver")
+
+            cboDriver.DataSource = tblData
+            cboDriver.DataValueField = "ID"
+            cboDriver.DataTextField = "DriverName"
+            cboDriver.DataBind()
+
+            objConn.Close()
+            tblData.Dispose()
+            dpt.Dispose()
+            objConn.Dispose()
+
+            lblStatus.Text = String.Empty
+
+        Catch ex As Exception
+            lblStatus.Text = "Error: " & ex.Message
+        End Try
     End Sub
 
     Sub RefreshTowList()
@@ -49,16 +89,20 @@
             Dim tblData As DataTable = dataSet.Tables("tmptow_jobs")
             Dim ObjRow As DataRow = tblData.Rows(0)
             txtCalledBy.Text = "" & ObjRow("CalledBy")
-            txtDriver.Text = "" & ObjRow("Driver")
+
+            If ObjRow("DriverID") IsNot DBNull.Value Then
+                cboDriver.SelectedValue = "" & ObjRow("DriverID").ToString()
+            End If
+
             txtVehicle.Text = "" & ObjRow("Vehicle")
             txtTowAddress.Text = "" & ObjRow("TowAddress")
             txtTowLocation.Text = "" & ObjRow("TowLocation")
-            txtConatctPhone.Text = "" & ObjRow("ContactPhone")
+            txtContactPhone.Text = "" & ObjRow("ContactPhone")
             txtNotes.Text = "" & ObjRow("Notes")
 
             If Len("" & ObjRow("CalledIn")) > 0 Then
-                txtCalledInDate.Text = "" & Format(ObjRow("CalledIn"), "yyyy-MM-dd")
-                txtCalledInTime.Text = "" & Format(ObjRow("CalledIn"), "HH:mm")
+                txtCalledInDate.Text = "" & CDate(ObjRow("CalledIn")).ToString("yyy-MM-dd")
+                txtCalledInTime.Text = "" & CDate(ObjRow("CalledIn")).ToString("HH:mm")
             Else
                 txtCalledInDate.Text = ""
                 txtCalledInTime.Text = ""
@@ -85,7 +129,7 @@
             Dim objConn As New SqlClient.SqlConnection(strConn)
             Dim dataSet As New DataSet()
             Dim query As String = "Update [tow_jobs] Set CalledBy = @CalledBy " &
-                " , Driver = @Driver " &
+                " , DriverID = @DriverID " &
                 " , Vehicle = @Vehicle " &
                 " , TowAddress = @TowAddress " &
                 " , TowLocation = @TowLocation " &
@@ -95,20 +139,20 @@
                 " Where TowId = @TowID;"
             Dim objCmd As SqlClient.SqlCommand = New SqlClient.SqlCommand(query, objConn)
             Dim prmCalledBy As New SqlClient.SqlParameter("@CalledBy", SqlDbType.NVarChar)
-            Dim prmDriver As New SqlClient.SqlParameter("@Driver", SqlDbType.NVarChar)
+            Dim prmDriverID As New SqlClient.SqlParameter("@DriverID", SqlDbType.NVarChar)
             Dim prmVehicle As New SqlClient.SqlParameter("@Vehicle", SqlDbType.NVarChar)
             Dim prmTowAddress As New SqlClient.SqlParameter("@TowAddress", SqlDbType.NVarChar)
             Dim prmTowLocation As New SqlClient.SqlParameter("@TowLocation", SqlDbType.NVarChar)
-            Dim prmConatctPhone As New SqlClient.SqlParameter("@ContactPhone", SqlDbType.NVarChar)
+            Dim prmContactPhone As New SqlClient.SqlParameter("@ContactPhone", SqlDbType.NVarChar)
             Dim prmNotes As New SqlClient.SqlParameter("@Notes", SqlDbType.NVarChar)
             Dim prmTowID As New SqlClient.SqlParameter("@TowID", SqlDbType.Int)
             Dim prmCalledIn As New SqlClient.SqlParameter("@CalledIn", SqlDbType.DateTime)
             prmCalledBy.Value = "" & txtCalledBy.Text
-            prmDriver.Value = "" & txtDriver.Text
+            prmDriverID.Value = "" & cboDriver.SelectedValue
             prmVehicle.Value = "" & txtVehicle.Text
             prmTowAddress.Value = "" & txtTowAddress.Text
             prmTowLocation.Value = "" & txtTowLocation.Text
-            prmConatctPhone.Value = "" & txtConatctPhone.Text
+            prmContactPhone.Value = "" & txtContactPhone.Text
             prmNotes.Value = "" & txtNotes.Text
             prmTowID.Value = "" & gvMain.SelectedValue
             If Len(txtCalledInDate.Text) > 0 And Len(txtCalledInTime.Text) > 0 Then
@@ -118,11 +162,11 @@
             End If
 
             objCmd.Parameters.Add(prmCalledBy)
-            objCmd.Parameters.Add(prmDriver)
+            objCmd.Parameters.Add(prmDriverID)
             objCmd.Parameters.Add(prmVehicle)
             objCmd.Parameters.Add(prmTowAddress)
             objCmd.Parameters.Add(prmTowLocation)
-            objCmd.Parameters.Add(prmConatctPhone)
+            objCmd.Parameters.Add(prmContactPhone)
             objCmd.Parameters.Add(prmNotes)
             objCmd.Parameters.Add(prmTowID)
             objCmd.Parameters.Add(prmCalledIn)
@@ -153,11 +197,11 @@
 
     Sub ClearDataFields()
         txtCalledBy.Text = ""
-        txtDriver.Text = ""
+        'cboDriver.SelectedValue = "0"
         txtVehicle.Text = ""
         txtTowAddress.Text = ""
         txtTowLocation.Text = ""
-        txtConatctPhone.Text = ""
+        txtContactPhone.Text = ""
         txtNotes.Text = ""
         txtCalledInDate.Text = ""
         txtCalledInTime.Text = ""
@@ -220,10 +264,10 @@
             Dim objConn As New SqlClient.SqlConnection(strConn)
             Dim dataSet As New DataSet()
             Dim query As String = "INSERT INTO [tow_jobs] " &
-                " ( [CalledBy] ,[Driver] ,[Vehicle] ,[TowAddress] ,[TowLocation] ,[ContactPhone] ,[Notes] ,[CalledIn] ) " &
+                " ( [CalledBy] ,[DriverID] ,[Vehicle] ,[TowAddress] ,[TowLocation] ,[ContactPhone] ,[Notes] ,[CalledIn] ) " &
                 " VALUES ( " &
                 "   @CalledBy " &
-                " , @Driver " &
+                " , @DriverID " &
                 " , @Vehicle " &
                 " , @TowAddress " &
                 " , @TowLocation " &
@@ -233,19 +277,19 @@
                 " );"
             Dim objCmd As SqlClient.SqlCommand = New SqlClient.SqlCommand(query, objConn)
             Dim prmCalledBy As New SqlClient.SqlParameter("@CalledBy", SqlDbType.NVarChar)
-            Dim prmDriver As New SqlClient.SqlParameter("@Driver", SqlDbType.NVarChar)
+            Dim prmDriverID As New SqlClient.SqlParameter("@DriverID", SqlDbType.NVarChar)
             Dim prmVehicle As New SqlClient.SqlParameter("@Vehicle", SqlDbType.NVarChar)
             Dim prmTowAddress As New SqlClient.SqlParameter("@TowAddress", SqlDbType.NVarChar)
             Dim prmTowLocation As New SqlClient.SqlParameter("@TowLocation", SqlDbType.NVarChar)
-            Dim prmConatctPhone As New SqlClient.SqlParameter("@ContactPhone", SqlDbType.NVarChar)
+            Dim prmContactPhone As New SqlClient.SqlParameter("@ContactPhone", SqlDbType.NVarChar)
             Dim prmNotes As New SqlClient.SqlParameter("@Notes", SqlDbType.NVarChar)
             Dim prmCalledIn As New SqlClient.SqlParameter("@CalledIn", SqlDbType.DateTime)
             prmCalledBy.Value = "" & txtCalledBy.Text
-            prmDriver.Value = "" & txtDriver.Text
+            prmDriverID.Value = "" & cboDriver.SelectedValue
             prmVehicle.Value = "" & txtVehicle.Text
             prmTowAddress.Value = "" & txtTowAddress.Text
             prmTowLocation.Value = "" & txtTowLocation.Text
-            prmConatctPhone.Value = "" & txtConatctPhone.Text
+            prmContactPhone.Value = "" & txtContactPhone.Text
             prmNotes.Value = "" & txtNotes.Text
             If Len(txtCalledInDate.Text) > 0 And Len(txtCalledInTime.Text) > 0 Then
                 prmCalledIn.Value = txtCalledInDate.Text & " " & txtCalledInTime.Text
@@ -254,11 +298,11 @@
             End If
 
             objCmd.Parameters.Add(prmCalledBy)
-            objCmd.Parameters.Add(prmDriver)
+            objCmd.Parameters.Add(prmDriverID)
             objCmd.Parameters.Add(prmVehicle)
             objCmd.Parameters.Add(prmTowAddress)
             objCmd.Parameters.Add(prmTowLocation)
-            objCmd.Parameters.Add(prmConatctPhone)
+            objCmd.Parameters.Add(prmContactPhone)
             objCmd.Parameters.Add(prmNotes)
             objCmd.Parameters.Add(prmCalledIn)
 

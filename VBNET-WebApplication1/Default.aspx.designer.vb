@@ -23,6 +23,15 @@ Partial Public Class _Default
     Protected WithEvents updMain As Global.System.Web.UI.UpdatePanel
 
     '''<summary>
+    '''lblUsername control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblUsername As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''btnAddNewRecord control.
     '''</summary>
     '''<remarks>
@@ -104,13 +113,13 @@ Partial Public Class _Default
     Protected WithEvents lblDriver As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtDriver control.
+    '''cboDriver control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtDriver As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents cboDriver As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''lblVehicle control.
@@ -167,22 +176,22 @@ Partial Public Class _Default
     Protected WithEvents txtTowLocation As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''lblConatctPhone control.
+    '''lblContactPhone control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblConatctPhone As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblContactPhone As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtConatctPhone control.
+    '''txtContactPhone control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtConatctPhone As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtContactPhone As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lblCalledIn control.
